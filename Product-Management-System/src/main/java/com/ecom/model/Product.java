@@ -33,9 +33,12 @@ public class Product {
 
 	private String descprition;
 	
-
+	private Double rating;
+	
 	private Double price;
 
+	private String url;
+	
 	private Integer stock;
 	
 	@JsonIgnore
