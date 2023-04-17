@@ -30,7 +30,6 @@ public class Orders {
 	@Id
 	@GeneratedValue(strategy =  GenerationType.AUTO)
 	private Long orderId;
-	private Double totalAmount;
 	private String paymentType;
     private LocalDate orderDate;
 	private LocalTime orderTime;

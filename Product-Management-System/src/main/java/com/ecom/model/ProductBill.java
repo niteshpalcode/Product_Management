@@ -38,7 +38,7 @@ public class ProductBill {
 	
 	private Integer totalItem;
 	
-	private Integer totalPrice;
+	private Double totalPrice;
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
