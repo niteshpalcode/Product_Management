@@ -1,4 +1,4 @@
-package com.ecom.model;
+	package com.ecom.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

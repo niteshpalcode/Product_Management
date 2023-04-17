@@ -24,8 +24,7 @@ import lombok.Setter;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+
 public class Orders {
 
 	@Id
@@ -35,7 +34,7 @@ public class Orders {
 	private String paymentType;
     private LocalDate orderDate;
 	private LocalTime orderTime;
-	private String status;
+	private String status="Pending";
 	
 	@ManyToOne
 	private Users users;

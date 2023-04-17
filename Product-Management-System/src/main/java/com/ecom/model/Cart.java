@@ -1,18 +1,18 @@
 package com.ecom.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,12 +36,14 @@ public class Cart {
 	private Integer quantity;
 	private String imageUrl;
 	
-	
-	 @OneToOne
-	 private Users users;
+	@OneToOne
+	@JsonIgnore
+	private Users users;
+	   
 	
 	 @OneToMany(cascade = CascadeType.ALL)
-	 Set<Product> product = new HashSet<>();
+	 @JsonIgnore
+	 List<Product> product;
 	 
 		
 	

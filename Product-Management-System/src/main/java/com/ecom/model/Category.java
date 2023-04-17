@@ -31,9 +31,9 @@ public class Category {
 	private Long categoryId;
 	private String type;
 	
-	@OneToMany(cascade = CascadeType.ALL )
+	@OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JsonIgnore
-	private List<Product> list = new ArrayList<>();
+    private List<Product> list;
 	
 	
 	
