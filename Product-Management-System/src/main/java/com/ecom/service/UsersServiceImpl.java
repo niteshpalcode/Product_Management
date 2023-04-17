@@ -1,4 +1,4 @@
-package com.ecom.service;
+	package com.ecom.service;
 
 import java.util.Optional;
 
@@ -30,20 +30,17 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public Users addNewUsers(Users users) throws UsersNotFoundException {
-	Users user  = usersRepository.findByMobileNumber(users.getMobileNumber());
-		
-//		if(user!=null) {
-//			throw new  UsersNotFoundException("Users with this mobile number is Already exists...");
-//			
-//		}
-			usersRepository.save(users);
-			Cart cart = new Cart();
-			cart.setUsers(users);
-			cartRepository.save(cart);
-	        user.setCart(cart);
-       
-       return users;
-
+		Users existingUser = usersRepository.findByMobileNumber(users.getMobileNumber());
+	    if (existingUser == null) {
+	    	Cart cart = new Cart();
+	    	users.setCart(cart);
+	    	cart.setUsers(users);
+	    	return usersRepository.save(users);
+	   
+	    }else {
+	    
+	        throw new UsersNotFoundException("Users with this mobile number already exists...");
+	    }
 	}
 
 

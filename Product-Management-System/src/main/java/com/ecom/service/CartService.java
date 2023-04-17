@@ -26,7 +26,7 @@ public interface CartService {
 		
 	 public String clearProductFromCart(Long userId )throws CartException,LoginException,UsersNotFoundException;
 
-	 public List<Product> viewAllProductFromCart(Long userId,Long cartId )throws CartException,LoginException,UsersNotFoundException;
+	 public List<Product> viewAllProductFromCart(Long userId )throws CartException,LoginException,UsersNotFoundException;
 		
 		
 }
