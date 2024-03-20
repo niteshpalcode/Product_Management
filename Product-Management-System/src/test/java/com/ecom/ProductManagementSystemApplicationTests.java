@@ -8,6 +8,6 @@ class ProductManagementSystemApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
+	 }
 
 }
