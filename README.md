@@ -82,3 +82,7 @@ Admins can view and manage orders, including generating product bills for each o
 Users can view their order history and order details.
 
 
+### ER Diagram
+The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
+
+
