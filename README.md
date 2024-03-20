@@ -27,7 +27,8 @@ The project includes several user side features such as a landing , search funct
 -  Orders Module
 -  ProductBill Module
 
-
+### Flow-Chart
+![alt text](https://github.com/niteshpalcode/Product_Management/blob/main/WorkFlow-D.png)
 ## Authentication Module:
 
 
@@ -84,5 +85,6 @@ Users can view their order history and order details.
 
 ### ER Diagram
 The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
+![alt text](https://github.com/niteshpalcode/Product_Management/blob/main/Ecom-ER-D.png)
 
 
