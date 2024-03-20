@@ -1,5 +1,8 @@
 package com.ecom.service;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ import com.ecom.repository.CurrentAdminSessionDao;
 @Service
 public class AdminServiceImpl implements AdminSevice {
 
+	 private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+	
 	@Autowired
 	private AdminRepository adminRepository;
 	
@@ -23,11 +28,15 @@ public class AdminServiceImpl implements AdminSevice {
 
 	@Override
 	public Admin saveNewAdminDetails(Admin admin) throws AdminNotFoundException {
-		 Admin admins = adminRepository.findByUsername(admin.getUsername());
+		  logger.info("Attempting to save new admin details for username: {}", admin.getUsername());
+
+		Admin admins = adminRepository.findByUsername(admin.getUsername());
 		 
 		 if(admins==null) {
+			 logger.info("New admin details saved successfully for username: {}", admin.getUsername());
 			return adminRepository.save(admin);
 		 }else {
+			 logger.error("Admin with username {} already exists", admin.getUsername());
 			 throw new AdminNotFoundException("Admin with this username is already present");
 		 }
 		
@@ -36,10 +45,13 @@ public class AdminServiceImpl implements AdminSevice {
 
 	@Override
 	public Admin updateAdmin(String key,Admin admin ) throws AdminNotFoundException {
-		
+		 logger.info("Attempting to update admin details with key: {}", key);
+
 		   AdminCurrentSession isPresent = currentAdminSessionDao.findByAdminKey(key);
 
 		    if (isPresent == null) {
+		    	   logger.error("Admin not present with key: {}", key);
+		           
 		        throw new AdminNotFoundException("Admin not present with this key");
 		    }
 
@@ -52,7 +64,8 @@ public class AdminServiceImpl implements AdminSevice {
 		        updatedAdmin.setName(admin.getName());
 		        updatedAdmin.setPassword(admin.getPassword());
 		        updatedAdmin.setUsername(admin.getUsername());
-
+		        logger.info("Admin details updated successfully for username: {}", admin.getUsername());
+		         
 		        adminRepository.save(updatedAdmin);
 		    }
 
@@ -61,20 +74,24 @@ public class AdminServiceImpl implements AdminSevice {
 
 	@Override
 	public String deleteAdmin(String key) throws AdminNotFoundException {
-		
+		 logger.info("Attempting to delete admin with key: {}", key);
+
 		 AdminCurrentSession isPresent = currentAdminSessionDao.findByAdminKey(key);
 
 		    if (isPresent == null) {
-		        throw new AdminNotFoundException("Admin not present with this key");
+		    	   logger.error("Admin not present with key: {}", key);
+		    	      
+		    	throw new AdminNotFoundException("Admin not present with this key");
 		    }
 
 		    Optional<Admin> existingAdmin = adminRepository.findById(isPresent.getAdminId());
 		    if (existingAdmin.isPresent()) {
-		    
+		    	 logger.info("Admin deleted successfully with key: {}", key);
 		    	adminRepository.delete(existingAdmin.get());
 		    	
 		    
 		    }
+
 			return "Admin with this key is Successfully Deleted";
 		    
 		    }
